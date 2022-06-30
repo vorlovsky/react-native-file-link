@@ -7,16 +7,46 @@
 @implementation FileLink
 RCT_EXPORT_MODULE()
 
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_REMAP_METHOD(multiply,
-                 multiplyWithA:(nonnull NSNumber*)a withB:(nonnull NSNumber*)b
+RCT_REMAP_METHOD(createHardLink,
+                 createHardLinkWithSrc:(nonnull NSString*)src withDest:(nonnull NSString*)dest
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 {
-  NSNumber *result = @([a floatValue] * [b floatValue]);
+  NSFileManager *fm = [NSFileManager defaultManager];
+  NSError *error; 
+  if ([fm linkItemAtPath:src toPath:dest error:&error]) {
+    resolve(dest);
+  } else {
+    reject(@"failure", @"failed to create hard link", nil);
+  }  
+}
 
-  resolve(result);
+RCT_REMAP_METHOD(createSymbolicLink,
+                 createSymbolicLinkWithSrc:(nonnull NSString*)src withDest:(nonnull NSString*)dest
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+  NSFileManager *fm = [NSFileManager defaultManager];
+  NSError *error; 
+  if ([fm createSymbolicLinkAtPath:dest withDestinationPath:src error:&error]) {
+    resolve(dest);
+  } else {
+    reject(@"failure", @"failed to create symbolic link", nil);
+  }  
+}
+
+RCT_REMAP_METHOD(removeLink,
+                 removeLinkWithDest:(nonnull NSString*)dest
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+  NSFileManager *fm = [NSFileManager defaultManager];
+  NSError *error; 
+  if ([fm removeItemAtPath:dest error:&error]) {
+    resolve(dest);
+  } else {
+    reject(@"failure", @"failed to remove link", nil);
+  }  
 }
 
 // Don't compile this code when we build for the old architecture.

@@ -22,12 +22,19 @@ public class FileLinkModule extends ReactContextBaseJavaModule {
         return NAME;
     }
 
-
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
     @ReactMethod
-    public void multiply(double a, double b, Promise promise) {
-        promise.resolve(a * b);
+    public void createHardLink(double a, double b, Promise promise) {
+        promise.reject("failure", "Not supported");
+    }
+
+    @ReactMethod
+    public void createSymbolicLink(double a, double b, Promise promise) {
+        promise.reject("failure", "Not supported");
+    }
+
+    @ReactMethod
+    public void removeLink(double a, double b, Promise promise) {
+        promise.reject("failure", "Not supported");
     }
 
 }

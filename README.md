@@ -1,19 +1,28 @@
 # react-native-file-link
-react-native-file-link provides support to create hard/soft links on iOS from React Native
+
+react-native-file-link provides support to create hard/soft links on iOS from React Native app
+
 ## Installation
 
-```sh
+````sh
 npm install react-native-file-link```
 
 ## Usage
 
 ```js
-import { multiply } from "react-native-file-link";
+import { createHardLink, createSymbolicLink, removeLink } from "react-native-file-link";
 
 // ...
+const fileName = <path-to-a-file-you-want-to-create-link-to>;
+const hardLinkPath = fileName + '.lnk'; // example: hard link will have the same file path, same name and a custom extension added (check if there is no such file existing already)
+const softLinkPath = <some-other-file-path>; // example: soft link will have different file path (check if there is no such file existing already)
 
-const result = await multiply(3, 7);
-```
+await createHardLink(fileName, hardLinkPath);
+await createSymbolicLink(fileName, softLinkPath);
+
+await removeLink(hardLinkPath) // removing hard link
+await removeLink(softLinkPath) // removing soft link
+````
 
 ## Contributing
 
