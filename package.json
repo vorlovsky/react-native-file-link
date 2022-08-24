@@ -1,6 +1,6 @@
 {
   "name": "react-native-file-link",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react-native-file-link provides support to create hard/soft links on iOS from React Native app",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

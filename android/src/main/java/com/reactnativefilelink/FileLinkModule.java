@@ -10,7 +10,7 @@ import com.facebook.react.module.annotations.ReactModule;
 
 @ReactModule(name = FileLinkModule.NAME)
 public class FileLinkModule extends ReactContextBaseJavaModule {
-    public static final String NAME = "FileLink";
+    public static final String NAME = "FileLinkModule";
 
     public FileLinkModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -23,18 +23,18 @@ public class FileLinkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void createHardLink(double a, double b, Promise promise) {
-        promise.reject("failure", "Not supported");
+    public void createHardLink(String src, String dest, Promise promise) {        
+        promise.resolve(src);
     }
 
     @ReactMethod
-    public void createSymbolicLink(double a, double b, Promise promise) {
-        promise.reject("failure", "Not supported");
+    public void createSymbolicLink(String src, String dest, Promise promise) {
+        promise.resolve(src);
     }
 
     @ReactMethod
-    public void removeLink(double a, double b, Promise promise) {
-        promise.reject("failure", "Not supported");
+    public void removeLink(String dest, Promise promise) {
+        promise.resolve(dest);
     }
 
 }

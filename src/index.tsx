@@ -6,8 +6,8 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-const FileLink = NativeModules.FileLink
-  ? NativeModules.FileLink
+const FileLink = NativeModules.FileLinkModule
+  ? NativeModules.FileLinkModule
   : Platform.select({
       ios: new Proxy(
         {},

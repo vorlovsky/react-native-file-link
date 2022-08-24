@@ -1,10 +1,10 @@
-#import "FileLink.h"
+#import "FileLinkModule.h"
 
 #ifdef RCT_NEW_ARCH_ENABLED
-#import "RNFileLinkSpec.h"
+#import "RNFileLinkModuleSpec.h"
 #endif
 
-@implementation FileLink
+@implementation FileLinkModule
 RCT_EXPORT_MODULE()
 
 RCT_REMAP_METHOD(createHardLink,
@@ -54,7 +54,7 @@ RCT_REMAP_METHOD(removeLink,
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
     (const facebook::react::ObjCTurboModule::InitParams &)params
 {
-    return std::make_shared<facebook::react::NativeFileLinkSpecJSI>(params);
+    return std::make_shared<facebook::react::NativeFileLinkModuleSpecJSI>(params);
 }
 #endif
 
